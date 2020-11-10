@@ -1,15 +1,13 @@
 <template>
-<div>hi</div>
-<klart />
+<div>导航栏|<router-link to="/">klart1</router-link>
+    <router-link to="/xxx">klart2</router-link>
+</div>
+<hr />
+<router-view />
 </template>
 
 <script>
-import klart from './components/klart.vue'
-
 export default {
     name: 'App',
-    components: {
-        kalrt: kalrt
-    }
 }
 </script>
