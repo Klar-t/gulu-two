@@ -6,11 +6,11 @@
 <div class="gulu-dialog-wrapper">
     <div class="gulu-dialog">
     <header>
-        {{title}}
+        <slot name="title"/>
         <span @click="close" class="gulu-dialog-close"></span>
     </header>
         <main>
-            <slot/>
+            <slot name="content"/>
         </main>
         <footer>
             <Button @click="ok">OK</Button>
@@ -25,10 +25,6 @@
 import Button from '../Lib/Button.vue'
 export default {
     props:{
-        title:{
-            type:String,
-            default:"提示"
-        },
         visible:{
             type: Boolean,
             default: false
