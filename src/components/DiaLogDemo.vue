@@ -1,7 +1,7 @@
 <template>
 <div>
     DiaLogDemo组件
-</div>
+
 <Button @click="toggle">toggle</Button>
 <Dialog v-model:visible="x" :closeonClickOverlay="false"
 :ok="f1" :cancel="f2">
@@ -13,8 +13,8 @@
     <strong>提示</strong>
 </template>
 </Dialog>
-<div>
-
+<h2>示例2</h2>
+<Button @click="showDialog">show </Button>
 </div>
 </template>
 
@@ -22,6 +22,7 @@
 import Dialog from '../Lib/Dialog.vue'
 import Button from '../Lib/Button.vue'
 import { ref } from 'vue'
+import { openDialog} from '../Lib/openDialog'
 export default {
     components: {
         Dialog,
@@ -38,8 +39,20 @@ export default {
         const f2=()=>{
 
         }
+        const showDialog=()=>{
+            openDialog({
+                title:'标题',
+                content:'你好',
+                ok(){
+                    console.log("ok");
+                },
+                cancel(){
+                    console.log("cancel");
+                }
+                })
+        }
         return {
-            x,toggle,f1,f2
+            x,toggle,f1,f2,showDialog
         }
     }
 }

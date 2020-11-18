@@ -53,13 +53,12 @@ export default {
             }
         }
         const ok=()=>{
-            context.emit('ok')
             if(props.ok?.()!=false){
                 close()
             }
         }
         const cancel=()=>{
-            context.emit('cancel')
+            props.cancel?.()
             close()
         }
         return {
