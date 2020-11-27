@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="topanvAndBanner">
     <Topnav />
     <div class="banner">
         <h1>轱辘UI</h1>
@@ -22,14 +22,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.topanvAndBanner{
+    background: linear-gradient(145deg, rgba(227,255,253,1) 0%, rgba(88,217,227,1) 100%);
+}
 .banner {
     padding: 100px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: lightgreen;
-
     >.actions {
         padding: 8px 0;
 
