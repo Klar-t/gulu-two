@@ -1,11 +1,11 @@
 <template>
     <div class="gulu-tabs">
-        <div class="gulu-tabs-nav">
+        <div class="gulu-tabs-nav" ref="container">
             <div class="gulu-tabs-nav-item"
             @click="select(t)"
             :class="{selected: t===selected}" 
             v-for="(t,index) in titles" 
-            :ref="el=>{if(el) navItems[index]=el}"
+            :ref="el=>{if(t===selected) selecteditem=el}"
             :key="index">{{t}}</div>
             <div class="gulu-tabs-nav-indicatior" ref="indicator"></div>
         </div>
@@ -18,7 +18,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUpdated, ref } from 'vue'
 import Tab from './Tab.vue'
 export default {
     props:{
@@ -27,18 +27,26 @@ export default {
         }
     },
     setup(props,context){
-        const navItems=ref<HTMLDivElement[]>([])
-        const indicator=ref<HTMLDivElement[]>();
-        onMounted(()=>{
+        const selecteditem=ref<HTMLDivElement>(null)
+        const indicator=ref<HTMLDivElement>(null);
+        const container=ref<HTMLDivElement>(null);
+        const x=()=>{
             console.log("navitem:")
-            console.log({...navItems.value});
-            const divs=navItems.value;
-            const result=divs.filter(div=>div.classList.contains('selected'))[0];
-            console.log(result);
-            const {width}=result.getBoundingClientRect();
-            indicator.value.style.width
+            const {width}=selecteditem.value.getBoundingClientRect();
+            console.log("宽度：");
+            console.log(width)
+            console.log(indicator);
+            indicator.value.style.width=width+'px';
 
-        })
+            const{left:left1}=container.value.getBoundingClientRect();
+
+            const {left:left2}=selecteditem.value.getBoundingClientRect();
+
+            const left=left2-left1;
+            indicator.value.style.left=left+'px'
+        }
+        onMounted(x);
+        onUpdated(x)
         const defaults=context.slots.default()
         console.log(...defaults)
         defaults.forEach((tag)=>{
@@ -61,7 +69,7 @@ export default {
             console.log("d")
         }
         return {
-            defaults,titles,select,current,navItems,indicator
+            defaults,titles,select,current,selecteditem,indicator,container
         }
     }
     
@@ -95,7 +103,7 @@ $border-color: #d9d9d9;
         left: 0;
         bottom: -1px;
         width: 100px;
-
+        transition: all 250ms;
     }
   }
   &-content {
