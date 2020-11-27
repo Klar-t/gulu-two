@@ -1,11 +1,19 @@
 <template>
 <div class="topnav">
-    <div class="logo">Logo</div>
+    <router-link to="/" class="logo">
+        <svg class="icon">
+            <use xlink:href="#icon-dc"></use>
+        </svg>
+    </router-link>
     <div class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
+        <li>
+        <router-link to="/doc">文档</router-link>
+        </li>
     </div>
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <svg v-if="toggleMenuButtonVisible"
+    class="toggleAside" @click="toggleMenu">
+        <use xlink:href="#icon-menu"></use>
+    </svg>
 </div>
 </template>
 
@@ -15,6 +23,12 @@ import {
     Ref
 } from 'vue'
 export default {
+    props:{
+        toggleMenuButtonVisible:{
+            type: Boolean,
+            default: false
+        }
+    },
     setup() {
         const menuVisible = inject < Ref < boolean >> ('menuVisible'); //get
         console.log('topnva 获取的：' + menuVisible.value);
@@ -41,6 +55,10 @@ export default {
     >.logo {
         max-width: 6em;
         margin-right: auto;
+        >.icon{
+            width: 32px;
+            height: 32px;
+        }
     }
 
     >.menu {
@@ -57,7 +75,6 @@ export default {
 
         width: 24px;
         height: 24px;
-        background: red;
         position: absolute;
         left: 16px;
         top: 50%;
