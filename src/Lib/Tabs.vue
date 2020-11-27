@@ -18,7 +18,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, onMounted, onUpdated, ref } from 'vue'
+import { computed, onMounted, onUpdated, ref, watchEffect } from 'vue'
 import Tab from './Tab.vue'
 export default {
     props:{
@@ -31,22 +31,17 @@ export default {
         const indicator=ref<HTMLDivElement>(null);
         const container=ref<HTMLDivElement>(null);
         const x=()=>{
-            console.log("navitem:")
             const {width}=selecteditem.value.getBoundingClientRect();
-            console.log("宽度：");
-            console.log(width)
-            console.log(indicator);
             indicator.value.style.width=width+'px';
-
+            console.log("width:"+indicator.value.style.width)
             const{left:left1}=container.value.getBoundingClientRect();
-
             const {left:left2}=selecteditem.value.getBoundingClientRect();
-
+            console.log(selecteditem.value.getBoundingClientRect());
             const left=left2-left1;
             indicator.value.style.left=left+'px'
         }
         onMounted(x);
-        onUpdated(x)
+        onUpdated(x);
         const defaults=context.slots.default()
         console.log(...defaults)
         defaults.forEach((tag)=>{
@@ -57,19 +52,12 @@ export default {
         const titles=defaults.map((tag)=>{
             return tag.props.title
         })
-        const current=computed(()=>{
-            console.log() 
-            return defaults.filter((tag)=>{
-                return tag.props.title===props.selected
-            })[0]
-        }) 
-        
         const select = (title: string) => {
             context.emit('update:selected', title)
             console.log("d")
         }
         return {
-            defaults,titles,select,current,selecteditem,indicator,container
+            defaults,titles,select,selecteditem,indicator,container
         }
     }
     
