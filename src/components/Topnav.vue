@@ -7,7 +7,7 @@
     </router-link>
     <div class="menu">
         <li>
-        <router-link to="/doc">文档</router-link>
+            <router-link to="/doc">文档</router-link>
         </li>
     </div>
     <svg v-if="toggleMenuButtonVisible"
@@ -48,7 +48,7 @@ export default {
     display: flex;
     padding: 16px;
     position: relative;
-    z-index: 10;
+    z-index: 20;
     justify-content: center;
     align-items: center;
 

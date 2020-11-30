@@ -41,8 +41,19 @@ export default {
             const left=left2-left1;
             indicator.value.style.left=left+'px'
         }
-        onMounted(x);
-        onUpdated(x);
+        onMounted(()=>{
+            watchEffect(()=>{
+                const {width}=selecteditem.value.getBoundingClientRect();
+            indicator.value.style.width=width+'px';
+            console.log("width:"+indicator.value.style.width)
+            const{left:left1}=container.value.getBoundingClientRect();
+            const {left:left2}=selecteditem.value.getBoundingClientRect();
+            console.log(selecteditem.value.getBoundingClientRect());
+            const left=left2-left1;
+            indicator.value.style.left=left+'px'
+            })
+
+        });
         const defaults=context.slots.default()
         console.log(...defaults)
         defaults.forEach((tag)=>{
