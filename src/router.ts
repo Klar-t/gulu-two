@@ -29,4 +29,4 @@ export const router=createRouter({
             {path:'tabs',component:TabsDemo},
         ]}
     ]
-});
+})
