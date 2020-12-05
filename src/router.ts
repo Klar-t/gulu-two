@@ -21,7 +21,7 @@ export const router=createRouter({
         {path:'/doc',component:Doc,children:[
             {path:'',component:DocDemo},
             {path:'Intro',component:md('intro')},
-            {path:'get-started',component:md('get-started')},
+            {path:'get-started',component:md('get-started.md')},
             {path:'install',component:md('install')},
             {path:'switch',component:SwitchDemo},
             {path:'button',component:ButtonDemo},
@@ -29,4 +29,4 @@ export const router=createRouter({
             {path:'tabs',component:TabsDemo},
         ]}
     ]
-})
+});
