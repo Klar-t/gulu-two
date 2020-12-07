@@ -4,13 +4,13 @@
     <div class="demo">
         <h2>常规用法</h2>
         <div class="demo-component">
-            <Switch1Demo/>
+            <component :is="Switch1Demo"/>
         </div>
         <div class="demo-actions">
             <Button>查看代码</Button>
         </div>
         <div class="demo-code">
-            <pre>{{Switch1Demo.__sourceCode}}</pre>
+            <pre v-html="Prism.highlight(Switch1Demo.__sourceCode,Prism.languages.html,'html')"></pre>
         </div>
     </div>
     <Switch v-model:value="y" />
@@ -24,18 +24,19 @@ import {
 import Switch from '../Lib/Switch.vue'
 import Switch1Demo from '../components/Switch1.demo.vue'
 import Button from '../Lib/Button.vue'
-
-console.log(Switch1Demo.__sourceCode)
+import  'prismjs'
+import 'prismjs/themes/prism.css'
+const Prism =(window as any).Prism
+console.log(Prism)
 export default {
     components: {
         Switch,
-        Switch1Demo,
         Button
     },
     setup() {
         const y = ref(false)
         return {
-            y,Switch1Demo
+            y,Switch1Demo,Prism
         }
     }
 }
