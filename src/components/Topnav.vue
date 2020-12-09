@@ -31,10 +31,20 @@ export default {
     },
     setup() {
         const menuVisible = inject < Ref < boolean >> ('menuVisible'); //get
+        const maskVisible = inject < Ref < boolean >> ('maskVisible');
         console.log('topnva 获取的：' + menuVisible.value);
         const toggleMenu = () => {
             console.log('dadf' + !menuVisible.value);
             menuVisible.value = !menuVisible.value
+            if(menuVisible.value==false)
+            {
+                console.log("这里是false")
+                maskVisible.value = false
+            }
+            else{
+                console.log("这里相反")
+                maskVisible.value = !maskVisible.value
+            }
         };
         return {
             toggleMenu
@@ -44,10 +54,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$color: #007974;
 .topnav {
+    color: $color;
     display: flex;
     padding: 16px;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 20;
     justify-content: center;
     align-items: center;

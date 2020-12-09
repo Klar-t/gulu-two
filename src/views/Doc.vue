@@ -1,4 +1,5 @@
 <template>
+<div id="cover" v-if="maskVisible" @click="toggleVisible"></div>
 <div class="layout">
     <Topnav toggleMenuButtonVisible class="nav" />
     <div class="content">
@@ -47,9 +48,14 @@ export default {
     },
     setup() {
         const menuVisible = inject < Ref < boolean >> ('menuVisible'); //get
+        const maskVisible = inject < Ref < boolean >> ('maskVisible');
         console.log('Doc  获取的：' + menuVisible.value);
+        const toggleVisible=()=>{
+            console.log("这里取反")
+            maskVisible.value=!maskVisible.value;
+        }
         return {
-            menuVisible
+            menuVisible,toggleVisible,maskVisible
         }
     }
 }
@@ -57,6 +63,15 @@ export default {
 
 <style lang="scss" scoped>
 $aside-index:10;
+#cover{ 
+    position:absolute;left:0px;top:0px;
+    background:rgba(0, 0, 0, 0.4);
+    width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+    height:100%;
+    filter:alpha(opacity=60);  /*设置透明度为60%*/
+    opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+    z-Index:9;  
+}
 .layout {
     display: flex;
     flex-direction: column;
