@@ -1,0 +1,10 @@
+rm -rf dist &&
+yarn build &&
+cd dist 
+git init &&
+git add .  &&
+git commit -m "update commit" &&
+git branch -M main &&
+git remote add origin https://gitee.com/Klart/gulu-ui-website.git &&
+git push -f -u origin main &&
+cd ..
