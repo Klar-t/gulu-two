@@ -42,7 +42,7 @@ export default {
                 const left=left2-left1;
                 indicator.value.style.left=left+'px';
                 console.log('width1:'+left);
-            })
+            },{flush:'post'})
 
         });
         const defaults=context.slots.default()
