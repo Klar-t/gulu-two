@@ -38,11 +38,9 @@ export default {
             menuVisible.value = !menuVisible.value
             if(menuVisible.value==false)
             {
-                console.log("这里是false")
                 maskVisible.value = false
             }
             else{
-                console.log("这里相反")
                 maskVisible.value = !maskVisible.value
             }
         };

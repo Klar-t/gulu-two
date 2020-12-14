@@ -53,6 +53,7 @@ export default {
         const toggleVisible=()=>{
             console.log("这里取反")
             maskVisible.value=!maskVisible.value;
+            menuVisible.value=!menuVisible.value;
         }
         return {
             menuVisible,toggleVisible,maskVisible
