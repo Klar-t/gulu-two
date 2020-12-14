@@ -1,27 +1,24 @@
 <template>
-<div>
-    Tabs示例
-</div>
-<h1>示例1</h1>
-<Tabs v-model:selected="x">
-    <Tab title="导航1">内容1</Tab>
-    <Tab title="导航asdf2">内sfdasf容2</Tab>
-</Tabs>
+    <demo :component="TabDemo"/>
 </template>
 
 <script lang="ts">
-import Tabs from '../Lib/Tabs.vue'
-import Tab from '../Lib/Tab.vue'
+import TabDemo from '../components/Tabs1.demo.vue'
 import { ref } from 'vue'
+import  'prismjs'
+import 'prismjs/themes/prism.css'
+import Demo from './Demo.vue'
+
+
+const Prism =(window as any).Prism
+console.log(Prism)
 export default {
     components:{
-        Tabs,
-        Tab
+        Demo
     },
-    setup(){
-        const x=ref('导航asdf2')
+    setup() {
         return {
-            x
+            Prism,TabDemo
         }
     }
 }

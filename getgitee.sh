@@ -8,3 +8,4 @@ git branch -M main &&
 git remote add origin https://gitee.com/Klart/gulu-ui-website.git &&
 git push -f -u origin main &&
 cd ..
+echo https://klart.gitee.io/gulu-ui-website/index.html
