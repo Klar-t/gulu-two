@@ -15,7 +15,6 @@
             <pre class="language-html" v-html="Prism.highlight(Switch1Demo.__sourceCode,Prism.languages.html,'html')"></pre>
         </div>
     </div>
-    <Switch v-model:value="y" />
 </div>
 </template>
 
