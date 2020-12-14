@@ -1,58 +1,27 @@
 <template>
 <div>
-    DiaLogDemo组件
-
-<Button @click="toggle">toggle</Button>
-<Dialog v-model:visible="x" :closeonClickOverlay="false"
-:ok="f1" :cancel="f2">
-<template v-slot:content>
-    <div>好</div>
-    <div>你好</div>
-</template>
-<template v-slot:title>
-    <strong>提示</strong>
-</template>
-</Dialog>
-<h2>示例2</h2>
-<Button @click="showDialog">show </Button>
+    <demo :component="Dialog1Demo"/>
+    <demo :component="Dialog2Demo"/>
 </div>
 </template>
 
 <script lang="ts">
-import Dialog from '../Lib/Dialog.vue'
-import Button from '../Lib/Button.vue'
 import { ref } from 'vue'
-import { openDialog} from '../Lib/openDialog'
+import Dialog1Demo from '../components/Dialog1.demo.vue'
+import Dialog2Demo from '../components/Dialog2.demo.vue'
+import  'prismjs'
+import 'prismjs/themes/prism.css'
+import Demo from './Demo.vue'
+
+const Prism =(window as any).Prism
+console.log(Prism)
 export default {
     components: {
-        Dialog,
-        Button
+        Demo
     },
-    setup(){
-        const x=ref(false)
-        const toggle=()=>{
-            x.value=!x.value
-        }
-        const f1=()=>{
-            return false
-        }
-        const f2=()=>{
-
-        }
-        const showDialog=()=>{
-            openDialog({
-                title:'标题',
-                content:'你好',
-                ok(){
-                    console.log("ok");
-                },
-                cancel(){
-                    console.log("cancel");
-                }
-                })
-        }
+    setup() {
         return {
-            x,toggle,f1,f2,showDialog
+            Prism,Dialog1Demo,Dialog2Demo
         }
     }
 }
