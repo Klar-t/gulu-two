@@ -1,20 +1,7 @@
 <template>
 <div>
     <demo :component="Switch1Demo"/>
-    <h2>dasfk </h2>
-    <h1>Switch 组件</h1>
-    <div class="demo">
-        <h2>常规用法</h2>
-        <div class="demo-component">
-            <component :is="Switch1Demo"/>
-        </div>
-        <div class="demo-actions">
-            <Button>查看代码</Button>
-        </div>
-        <div class="demo-code">
-            <pre class="language-html" v-html="Prism.highlight(Switch1Demo.__sourceCode,Prism.languages.html,'html')"></pre>
-        </div>
-    </div>
+    <demo :component="Switch1Demo"/>  
 </div>
 </template>
 
